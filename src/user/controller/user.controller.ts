@@ -1,4 +1,5 @@
 import { Body, Controller, Get, HttpCode, Post, Req, UseGuards } from '@nestjs/common';
+import { ApiBearerAuth } from '@nestjs/swagger';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
@@ -37,6 +38,7 @@ export class UserController {
   // Requires Valid JWT from Login Request
   @UseGuards(JwtAuthGuard)
   @Get()
+  @ApiBearerAuth('JWT-auth')
   findAll(@Req() request): Observable<UserI[]> {
     return this.userService.findAll();
   }

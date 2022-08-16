@@ -9,6 +9,8 @@ async function bootstrap() {
   .setTitle('XPROP API')
   .setDescription('XPROP API')
   .setVersion('1.0')
+  .addBearerAuth({ type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
+  'JWT-auth',)
   .addTag('user')
   .build();
   const document = SwaggerModule.createDocument(app, config);
